@@ -1,0 +1,109 @@
+/* Base styles for screen display */
+body {
+    font-family: 'Inter', sans-serif, 'Traditional Arabic', 'Simplified Arabic'; /* Fallback to Arabic fonts */
+    color: #1f2937; /* Tailwind gray-800 */
+}
+.stretched-text {
+    letter-spacing: 0.2em; /* Adjust as needed for wider spacing */
+}
+.highlight {
+    background-color: #fde047; /* Tailwind yellow-200 */
+    padding: 2px 4px;
+    border-radius: 4px;
+}
+.ocr-suspicious {
+    background-color: #fde047; /* Yellow highlight for suspicious OCR */
+    padding: 2px 4px;
+    border-radius: 4px;
+}
+/* Style for the currently active search result */
+.current-highlight {
+    background-color: #fbbf24; /* Tailwind yellow-400, slightly darker */
+    box-shadow: 0 0 5px rgba(251, 191, 36, 0.8);
+}
+
+/* --- Print-specific styles for book formatting --- */
+@media print {
+    body {
+        margin: 0;
+        padding: 0;
+        font-size: 12pt; /* Standard body font size for print */
+        color: black; /* Ensure text is black on print */
+        background-color: white !important; /* Ensure white background */
+        /* Remove browser headers/footers */
+        print-color-adjust: exact;
+        -webkit-print-color-adjust: exact;
+    }
+
+    @page {
+        size: A4; /* Define page size, can be 'Letter' as well */
+        margin: 2.5cm 2.5cm 2.5cm 2.5cm; /* Top, Right, Bottom, Left margins */
+    }
+
+    /* Adjust container for print: remove shadows, borders, rounded corners, padding */
+    .bg-white, .shadow-lg, .rounded-lg, .border {
+        box-shadow: none !important;
+        border: none !important;
+        border-radius: 0 !important;
+        background-color: transparent !important; /* Remove background color */
+        padding: 0 !important; /* Reset padding from screen styles */
+        width: 100% !important; /* Take full width within page margins */
+        max-width: none !important; /* Remove max-width constraint */
+        margin: 0 !important; /* Remove any external margins */
+    }
+
+    /* Ensure text alignment is preserved */
+    .text-center { text-align: center !important; }
+    .text-right { text-align: right !important; }
+
+    /* Adjust specific text sizes for print legibility */
+    .text-xl { font-size: 14pt !important; }
+    .text-2xl { font-size: 16pt !important; }
+    .text-3xl { font-size: 18pt !important; }
+    .text-4xl { font-size: 22pt !important; } /* Main title size */
+    .text-5xl { font-size: 26pt !important; }
+    .text-6xl { font-size: 30pt !important; } /* For very large titles */
+
+    /* Maintain specific styles like letter-spacing */
+    .stretched-text {
+        letter-spacing: 0.2em !important;
+    }
+
+    /* Adjust vertical spacing for print */
+    .mb-8 { margin-bottom: 1.2cm !important; }
+    .mt-10 { margin-top: 1.5cm !important; }
+    .mb-4 { margin-bottom: 0.8cm !important; }
+    .space-y-1 > * + * { margin-top: 0.4cm !important; } /* Adjust spacing within lists/blocks */
+
+    /* Ensure elements do not break across pages awkwardly */
+    h1, h2, h3, h4, hr, p, div, ol, ul {
+        page-break-inside: avoid;
+    }
+    .text-right.text-lg.sm\:text-xl.font-medium.text-gray-700.space-y-1 {
+        page-break-inside: avoid; /* Keep volume details together */
+    }
+    .text-right.mt-10.p-4.bg-gray-100.rounded-md.border.border-gray-200 {
+        page-break-inside: avoid; /* Keep the note together */
+    }
+
+    /* Ensure each document-page starts on a new page and has a frame */
+    .document-page {
+        page-break-before: always;
+        border: 1px solid #ccc; /* A light border for the page */
+        padding: 2cm; /* Internal padding for content within the page frame */
+        box-sizing: border-box; /* Include padding in element's total width/height */
+    }
+    /* First page should not have a page break before it */
+    .document-page:first-of-type {
+        page-break-before: auto;
+    }
+    .document-page.empty-page {
+        border: none !important; /* No border for truly empty pages */
+    }
+    /* Highlights should not have background in print */
+    .highlight, .ocr-suspicious, .current-highlight {
+        background-color: transparent !important;
+        color: black !important; /* Ensure text is visible */
+        box-shadow: none !important;
+    }
+}
