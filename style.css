@@ -4,14 +4,14 @@
  * ================================================================= */
 
 /* 1. استيراد الخطوط والأنماط الأساسية للجسم */
-@import url('https://fonts.googleapis.com/css2?family=Amiri&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap');
 
 body {
     background: #f2f2f2;
     direction: rtl;
     margin: 0;
     padding: 0;
-    font-family: 'IBM Plex Sans Arabic', sans-serif;
+    font-family: 'Amiri', serif;
 }
 
 /* 2. تنسيق الصفحة الموحد (يعمل مع كل الصفحات) */
