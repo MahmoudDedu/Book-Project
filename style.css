@@ -1,88 +1,167 @@
+/* =================================================================
+ * ملف التنسيقات الموحد (CSS-Only Solution)
+ * مصمم للعمل مع أكواد HTML الحالية دون تعديلها.
+ * ================================================================= */
 
+/* 1. استيراد الخطوط والأنماط الأساسية للجسم */
+@import url('https://fonts.googleapis.com/css2?family=Amiri&display=swap');
+
+body {
+    background: #f2f2f2;
+    direction: rtl;
+    font-family: 'Amiri', serif;
+    margin: 0;
+    padding: 0;
+    font-family: 'IBM Plex Sans Arabic', sans-serif;
+}
+
+/* 2. تنسيق الصفحة الموحد (يعمل مع كل الصفحات) */
+.page {
+    width: 21cm;
+    min-height: 29.7cm;
+    background: white;
+    margin: 2rem auto;
+    padding: 2.5cm 2cm;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+}
+
+/* 3. توحيد تنسيقات العناوين المختلفة */
+.chapter-title-style, .cover-main-title {
+    font-size: 22pt;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 0.5cm;
+}
+.cover-main-title { font-size: 40pt; letter-spacing: 2px; } /* تخصيص للغلاف */
+
+
+.section-title-style, .section-header {
+    font-size: 18pt;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 1cm;
+}
+.section-header { /* تخصيص للرؤوس داخل المحتوى */
+    text-align: right;
+    margin-top: 1.5em;
+    margin-bottom: 0.75em;
+}
+
+/* 4. توحيد تنسيق منطقة المحتوى */
+/* يستهدف كلاس .content-style من الملف الأول وكلاس .content من الملف الثاني */
+.content-style, .content {
+    font-size: 14pt;
+    line-height: 2;
+    text-align: justify;
+}
+.content-style > p, .content > p {
+    text-indent: 1cm;
+    margin-bottom: 0.75em;
+}
+
+/* 5. توحيد تنسيق رقم الصفحة (يستهدف كلا الكلاسين) */
+.page-number-style, .page-number {
+    position: absolute;
+    bottom: 2cm;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-size: 12pt;
+}
+
+/* 6. تنسيق القوائم المخصصة (الحل بدون تعديل HTML) */
+.custom-list {
+    list-style: none; /* إخفاء الترقيم الافتراضي للمتصفح */
+    padding-right: 0;
+}
+
+.custom-list > li {
+    display: flex; /* استخدام Flexbox لوضع الرقم والمحتوى بجانب بعضهما */
+    flex-direction: row;
+    align-items: flex-start; /* محاذاة بداية السطر */
+    margin-bottom: 0.75em;
+}
+
+.custom-list .list-number {
+    flex-shrink: 0; /* منع الرقم من الانكماش */
+    width: 1.5cm;   /* حجز مساحة ثابتة للرقم */
+    text-align: right;
+    padding-left: 0.5em;
+}
+
+.custom-list .list-content {
+    flex-grow: 1; /* جعل المحتوى يأخذ المساحة المتبقية */
+}
+.custom-list .list-content p {
+    text-indent: 0 !important; /* إلغاء إزاحة الفقرات داخل القوائم */
+    margin-bottom: 0.5em;
+}
+
+/* تنسيق القوائم الفرعية */
+.sub-list {
+    list-style: none;
+    padding-right: 1.5em;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}
+
+/* 7. تنسيق جداول المحتويات (TOC) ذات الخطوط المنقطة */
+.toc-item {
+    display: flex;
+    align-items: baseline;
+    font-size: 14pt;
+    margin-bottom: 0.5em;
+}
+
+.toc-item .dashes {
+    flex-grow: 1;
+    border-bottom: 2px dotted #555;
+    margin: 0 0.5em;
+    transform: translateY(-4px); /* لضبط ارتفاع الخط المنقط */
+}
+
+/* 8. تنسيقات متنوعة (هايلايت، خط عريض، ...) */
+.highlight, .highlight-doubt, .highlight-doubt {
+    background-color: yellow;
+}
+strong, b {
+    font-weight: bold;
+}
+p.font-bold {
+    font-weight: bold;
+}
+
+/* 9. إضافة تنسيقات الغلاف المفقودة (لضمان عملها إذا وجدت في صفحة أخرى) */
+.cover-top-header, .cover-subtitle, .cover-volume-title, .cover-description,
+.cover-translation-note, .cover-authority-section, .cover-final-note {
+    text-align: center;
+}
+/* يمكنك إضافة تفاصيل التنسيق الأخرى للغلاف هنا إذا احتجت */
+
+
+/* 10. تنسيقات الطباعة (مهمة جداً للحفاظ على شكل الصفحات عند الطباعة) */
+@media print {
     body {
-      font-family: 'Amiri', serif;
-      background-color: #f2f2f2;
-      direction: rtl;
+        background-color: #fff !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
     }
 
     .page {
-      width: 21cm;
-      min-height: 29.7cm;
-      padding: 2cm;
-      margin: 2rem auto;
-      background: white;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      position: relative;
-      font-size: 14pt;
-      line-height: 2;
-      box-sizing: border-box;
+        page-break-after: always !important;
+        margin: 0 !important;
+        box-shadow: none !important;
+        border: none !important;
+        width: auto !important;
+        min-height: auto !important;
+        padding: 1.5cm !important;
     }
 
-    .content {
-      text-align: justify;
+    .page:last-child {
+        page-break-after: auto !important;
     }
-
-    .page-number {
-      position: absolute;
-      bottom: 2cm;
-      left: 0;
-      right: 0;
-      text-align: center;
-      font-size: 12pt;
-    }
-
-    h1, h2, h3, h4 {
-      font-weight: bold;
-    }
-
-    h1 { font-size: 18pt; text-align: center; margin-bottom: 1.5rem; }
-    h2 { font-size: 16pt; margin-bottom: 1rem; }
-    h3 { font-size: 15pt; margin-bottom: 1rem; }
-    p { margin-bottom: 0.75rem; }
-
-    ul, ol {
-      padding-right: 2rem;
-    }
-
-    .highlight {
-      background-color: #FFFF00;
-    }
-
-    .chemical-formula {
-      font-family: 'Courier New', Courier, monospace;
-      direction: ltr;
-      display: inline-block;
-    }
-
-    .custom-list {
-      list-style: none;
-      padding-right: 0;
-      margin: 0;
-    }
-
-    .custom-list li {
-      display: flex;
-      flex-direction: row;
-      align-items: flex-start;
-      margin-bottom: 0.75em;
-    }
-
-    .list-number {
-      flex-shrink: 0;
-      width: 1.5cm;
-      text-align: right;
-      padding-left: 0.5em;
-    }
-
-    .list-content {
-      flex-grow: 1;
-    }
-
-    .list-content p {
-      margin-bottom: 0.5em;
-      text-indent: 0;
-    }
-
-    .section-header {
-      font-weight: bold;
-    }
+}
