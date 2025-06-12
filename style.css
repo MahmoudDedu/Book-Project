@@ -9,7 +9,6 @@
 body {
     background: #f2f2f2;
     direction: rtl;
-    font-family: 'Amiri', serif;
     margin: 0;
     padding: 0;
     font-family: 'IBM Plex Sans Arabic', sans-serif;
@@ -125,7 +124,7 @@ body {
 }
 
 /* 8. تنسيقات متنوعة (هايلايت، خط عريض، ...) */
-.highlight, .highlight-doubt, .highlight-doubt {
+.highlight, .highlight-doubt {
     background-color: yellow;
 }
 strong, b {
